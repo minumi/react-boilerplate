@@ -10,6 +10,7 @@ const Container = styled.input`
   border-radius: 0;
   border: 1px solid ${(props) => props.theme.primary6};
   transition: border-color 0.2s ease-in-out;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
   outline: none;
   &:focus,
   &:active {

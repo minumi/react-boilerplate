@@ -7,7 +7,16 @@ import { ThemeProvider } from '../../typed-components';
 import AppPresenter from './AppPresenter';
 import { IS_LOGGED_IN } from './AppQueries.local';
 
-const AppContainer = ({ data }) => {
+interface IProps {
+  data: {
+    auth: {
+      isLoggedIn: boolean;
+      __typename: string;
+    };
+  };
+}
+
+const AppContainer = ({ data }: any) => {
   let theme = light;
   if (localStorage.getItem('theme')) {
     theme = localStorage.getItem('theme') === 'dark' ? dark : light;

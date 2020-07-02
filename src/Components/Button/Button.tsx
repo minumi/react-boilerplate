@@ -24,6 +24,8 @@ const Container = styled.button`
     background-color: ${(props) => props.theme.primary9};
   }
   &:disabled {
+    border: none;
+    background-color: gray;
     cursor: not-allowed;
   }
 `;
