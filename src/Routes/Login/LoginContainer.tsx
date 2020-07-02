@@ -20,7 +20,7 @@ const LoginContainer = () => {
     password: '',
   });
 
-  const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
+  const [loginUser, { data, loading }] = useMutation(LOGIN_USER);
   const [logUserIn] = useMutation(LOG_USER_IN);
 
   const onSubmit: FormEventHandler<HTMLFormElement> = () => {
@@ -46,7 +46,7 @@ const LoginContainer = () => {
           },
         });
     }
-  }, [data]);
+  }, [data, logUserIn]);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { id, value } = e.target;
