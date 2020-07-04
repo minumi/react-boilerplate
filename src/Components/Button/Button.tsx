@@ -7,9 +7,9 @@ interface IButtonProps {
 }
 
 const Container = styled.button`
-  color: ${(props) => props.theme.primary0};
-  border: 1px solid ${(props) => props.theme.primary0};
-  background-color: ${(props) => props.theme.primary8};
+  color: ${(props) => props.theme.background};
+  border: 1px solid ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.color};
   min-width: 100px;
   padding: 10px 10px;
   cursor: pointer;
@@ -34,7 +34,7 @@ const Container = styled.button`
     `}
   &:hover,
   &:active {
-    background-color: ${(props) => props.theme.primary9};
+    background-color: ${(props) => props.theme.dark};
   }
   &:disabled {
     border: none;

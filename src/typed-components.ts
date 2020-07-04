@@ -2,16 +2,14 @@ import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 
 interface IThemeInterface {
-  primary0: string;
-  primary1: string;
-  primary2: string;
-  primary3: string;
-  primary4: string;
-  primary5: string;
-  primary6: string;
-  primary7: string;
-  primary8: string;
-  primary9: string;
+  background: string;
+  disabled: string;
+  border: string;
+  light: string;
+  color: string;
+  dark: string;
+  error: string;
+  errorLight: string;
 }
 
 const {
