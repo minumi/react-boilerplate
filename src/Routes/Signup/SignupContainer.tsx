@@ -47,7 +47,7 @@ const SignupContainer: React.SFC<RouteComponentProps> = ({ history }) => {
         toast.error('The email already exists.');
       }
     }
-  }, [data]);
+  }, [data, history]);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { id, value } = e.target;
