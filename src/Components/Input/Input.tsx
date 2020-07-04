@@ -5,8 +5,8 @@ interface IProps {
 }
 
 const Input = styled.input<IProps>`
-  padding-top: 3px;
-  padding-left: 10px;
+  -webkit-appearance: none;
+  padding: 3px 10px 0;
   min-height: 40px;
   font-size: 16px;
   font-weight: 300;
