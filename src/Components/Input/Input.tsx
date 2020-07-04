@@ -4,7 +4,7 @@ import styled from '../../typed-components';
 const Container = styled.input`
   padding-top: 3px;
   padding-left: 5px;
-  min-height: 35px;
+  min-height: 40px;
   font-size: 16px;
   font-weight: 300;
   border-radius: 0;

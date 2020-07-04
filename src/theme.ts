@@ -12,16 +12,17 @@ const light = {
 };
 
 const dark = {
-  primary0: '#212529',
-  primary1: '#343a40',
-  primary2: '#495057',
-  primary3: '#868e96',
-  primary5: '#ced4da',
-  primary6: '#dee2e6',
-  primary7: '#e9ecef',
-  primary4: '#adb5bd',
-  primary8: '#f1f3f5',
-  primary9: '#f8f9fa',
+  ...light,
+  // primary0: '#212529',
+  // primary1: '#343a40',
+  // primary2: '#495057',
+  // primary3: '#868e96',
+  // primary5: '#ced4da',
+  // primary6: '#dee2e6',
+  // primary7: '#e9ecef',
+  // primary4: '#adb5bd',
+  // primary8: '#f1f3f5',
+  // primary9: '#f8f9fa',
 };
 
 export { light, dark };

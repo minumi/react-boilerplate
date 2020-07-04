@@ -13,6 +13,7 @@ import { LayoutCenter } from '../../Components/Layout';
 import LayoutSpacer from '../../Components/Layout/LayoutSpacer';
 import { LOG_USER_IN } from '../../sharedQueries.local';
 import { LOGIN_USER } from './LoginQueries';
+import { toast } from 'react-toastify';
 
 const LoginContainer = () => {
   const [form, setForm] = useState({
@@ -24,7 +25,6 @@ const LoginContainer = () => {
   const [logUserIn] = useMutation(LOG_USER_IN);
 
   const onSubmit: FormEventHandler<HTMLFormElement> = () => {
-    console.log(form);
     const { email, password } = form;
     loginUser({
       variables: {
@@ -37,14 +37,19 @@ const LoginContainer = () => {
   useEffect(() => {
     if (data) {
       const {
-        LoginUser: { ok, token },
+        LoginUser: { ok, token, error },
       } = data;
-      if (ok && token)
+      if (ok && token) {
         logUserIn({
           variables: {
             token,
           },
         });
+      } else if (!ok && error) {
+        if (error === 'not_matched') {
+          toast.error('Password does not match.');
+        }
+      }
     }
   }, [data, logUserIn]);
 
@@ -72,7 +77,7 @@ const LoginContainer = () => {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" onChange={onChange} />
           </InputWrapper>
-          <Button disabled={loading} fill={true}>
+          <Button disabled={loading} fill={true} size={'big'}>
             {loading ? 'Loading...' : 'Login'}
           </Button>
         </Form>

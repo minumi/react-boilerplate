@@ -6,6 +6,7 @@ import { light, dark } from '../../theme';
 import { ThemeProvider } from '../../typed-components';
 import AppPresenter from './AppPresenter';
 import { IS_LOGGED_IN } from './AppQueries.local';
+import GlobalStyle from '../../GlobalStyle';
 
 interface IProps {
   data: {
@@ -26,9 +27,10 @@ const AppContainer = ({ data }: any) => {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <AppPresenter isLoggedIn={data.auth.isLoggedIn} />
+        <ToastContainer draggable={true} position={'top-center'} />
       </ThemeProvider>
-      <ToastContainer draggable={true} position={'top-center'} />
     </>
   );
 };
