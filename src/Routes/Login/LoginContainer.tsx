@@ -5,15 +5,10 @@ import React, {
   useState,
 } from 'react';
 import { useMutation } from 'react-apollo';
-import { Helmet } from 'react-helmet';
-import { Button } from '../../Components/Button';
-import { Form } from '../../Components/Form';
-import { Input, InputWrapper, Label } from '../../Components/Input';
-import { LayoutCenter } from '../../Components/Layout';
-import LayoutSpacer from '../../Components/Layout/LayoutSpacer';
 import { LOG_USER_IN } from '../../sharedQueries.local';
 import { LOGIN_USER } from './LoginQueries';
 import { toast } from 'react-toastify';
+import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {
   const [form, setForm] = useState({
@@ -62,27 +57,7 @@ const LoginContainer = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
-      <LayoutSpacer height="50px" />
-      <LayoutCenter>
-        <Form onSubmit={onSubmit} className="login-form">
-          <InputWrapper>
-            <Label htmlFor="email">E-mail</Label>
-            <Input id="email" type="text" onChange={onChange} />
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" onChange={onChange} />
-          </InputWrapper>
-          <Button disabled={loading} fill={true} size={'big'}>
-            {loading ? 'Loading...' : 'Login'}
-          </Button>
-        </Form>
-      </LayoutCenter>
-    </>
+    <LoginPresenter onChange={onChange} onSubmit={onSubmit} loading={loading} />
   );
 };
 
