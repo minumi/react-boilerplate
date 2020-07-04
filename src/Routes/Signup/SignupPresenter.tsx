@@ -3,8 +3,12 @@ import { Helmet } from 'react-helmet';
 import { Button } from '../../Components/Button';
 import { Form } from '../../Components/Form';
 import { Input, InputWrapper, Label } from '../../Components/Input';
-import { LayoutCenter } from '../../Components/Layout';
-import LayoutSpacer from '../../Components/Layout/LayoutSpacer';
+import {
+  LayoutCenter,
+  LayoutSpacer,
+  LayoutBetween,
+} from '../../Components/Layout';
+import { Link } from '../../Components/Link';
 
 interface IProps {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
@@ -62,6 +66,11 @@ const SignupPresenter: React.SFC<IProps> = ({
         <Button disabled={loading} fill={true} size={'big'}>
           {loading ? 'Loading...' : 'Sign Up'}
         </Button>
+        <LayoutSpacer height="10px" />
+        <LayoutBetween>
+          <div></div>
+          <Link to="/login">Back to log in</Link>
+        </LayoutBetween>
       </Form>
     </LayoutCenter>
   </>
