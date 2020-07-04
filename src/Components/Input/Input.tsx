@@ -1,8 +1,12 @@
-import styled from '../../typed-components';
+import styled, { css } from '../../typed-components';
 
-const Input = styled.input`
+interface IProps {
+  error?: boolean;
+}
+
+const Input = styled.input<IProps>`
   padding-top: 3px;
-  padding-left: 5px;
+  padding-left: 10px;
   min-height: 40px;
   font-size: 16px;
   font-weight: 300;
@@ -20,6 +24,15 @@ const Input = styled.input`
     cursor: not-allowed;
     background-color: ${(props) => props.theme.disabled};
   }
+  ${(props) =>
+    props.error === true &&
+    css`
+      border-color: ${props.theme.error};
+      &:focus,
+      &:active {
+        border-color: ${props.theme.error};
+      }
+    `}
 `;
 
 export default Input;

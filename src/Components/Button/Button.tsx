@@ -1,12 +1,13 @@
-import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from '../../typed-components';
 
+type TButtonSize = 'small' | 'normal' | 'big';
+
 interface IButtonProps {
-  fill: number;
-  size: TButtonSize;
+  fill?: 'true' | 'false';
+  size?: TButtonSize;
 }
 
-const Container = styled.button`
+const Button = styled.button<IButtonProps>`
   color: ${(props) => props.theme.background};
   border: 1px solid ${(props) => props.theme.background};
   background-color: ${(props) => props.theme.color};
@@ -18,17 +19,16 @@ const Container = styled.button`
   text-align: center;
   outline: none;
   transition: background 0.2s ease-in-out;
-  height: ${(props: IButtonProps) => {
+  height: ${(props) => {
     if (props.size === 'big') {
       return '50px';
-    }
-    if (props.size === 'small') {
+    } else if (props.size === 'small') {
       return '30px';
     }
     return '40px';
   }};
   ${(props: IButtonProps) =>
-    props.fill &&
+    props.fill === 'true' &&
     css`
       width: 100%;
     `}
@@ -42,18 +42,5 @@ const Container = styled.button`
     cursor: not-allowed;
   }
 `;
-
-type TButtonSize = 'small' | 'normal' | 'big';
-
-interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  fill?: boolean;
-  size?: TButtonSize;
-}
-
-const Button: React.SFC<IProps> = ({ children, ...props }) => (
-  <Container {...props} fill={props.fill ? 1 : 0} size={props.size || 'normal'}>
-    {children}
-  </Container>
-);
 
 export default Button;

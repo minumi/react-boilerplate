@@ -1,29 +1,29 @@
-import React, {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import { useMutation } from 'react-apollo';
-import { CREATE_USER } from './SignupQueries';
+import { useForm } from 'react-hook-form';
+import { RouteComponentProps } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SignupPresenter from './SignupPresenter';
-import { RouteComponentProps } from 'react-router-dom';
+import { CREATE_USER } from './SignupQueries';
+
+interface IFormData {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  fullName: string;
+}
 
 const SignupContainer: React.SFC<RouteComponentProps> = ({ history }) => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    fullName: '',
+  const { register, handleSubmit, errors } = useForm<IFormData>({
+    mode: 'all',
   });
 
   const [createUser, { data, loading }] = useMutation(CREATE_USER);
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = () => {
-    const { email, password, passwordConfirm, fullName } = form;
+  const onSubmit = (data: IFormData) => {
+    const { email, password, passwordConfirm, fullName } = data;
     if (password !== passwordConfirm) {
-      toast.error('The password and the password confirm do not match.');
+      toast.error('Passwords do not match.');
       return;
     }
     createUser({
@@ -49,18 +49,11 @@ const SignupContainer: React.SFC<RouteComponentProps> = ({ history }) => {
     }
   }, [data, history]);
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { id, value } = e.target;
-    setForm({
-      ...form,
-      [id]: value,
-    });
-  };
-
   return (
     <SignupPresenter
-      onChange={onChange}
-      onSubmit={onSubmit}
+      register={register}
+      onSubmit={handleSubmit(onSubmit)}
+      errors={errors}
       loading={loading}
     />
   );

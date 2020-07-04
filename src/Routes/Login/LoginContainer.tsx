@@ -1,26 +1,26 @@
-import React, {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import { useMutation } from 'react-apollo';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { LOG_USER_IN } from '../../sharedQueries.local';
 import LoginPresenter from './LoginPresenter';
 import { LOGIN_USER } from './LoginQueries';
 
+interface IFormData {
+  email: string;
+  password: string;
+}
+
 const LoginContainer = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
+  const { register, handleSubmit, errors } = useForm<IFormData>({
+    mode: 'all',
   });
 
   const [loginUser, { data, loading }] = useMutation(LOGIN_USER);
   const [logUserIn] = useMutation(LOG_USER_IN);
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = () => {
-    const { email, password } = form;
+  const onSubmit = (data: IFormData) => {
+    const { email, password } = data;
     loginUser({
       variables: {
         email,
@@ -46,18 +46,15 @@ const LoginContainer = () => {
         }
       }
     }
-  }, [data, logUserIn]);
-
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { id, value } = e.target;
-    setForm({
-      ...form,
-      [id]: value,
-    });
-  };
+  }, [data, logUserIn, errors]);
 
   return (
-    <LoginPresenter onChange={onChange} onSubmit={onSubmit} loading={loading} />
+    <LoginPresenter
+      register={register}
+      onSubmit={handleSubmit(onSubmit)}
+      errors={errors}
+      loading={loading}
+    />
   );
 };
 

@@ -1,7 +1,7 @@
 import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 
-interface IThemeInterface {
+export interface IThemeInterface {
   background: string;
   disabled: string;
   border: string;
@@ -9,7 +9,6 @@ interface IThemeInterface {
   color: string;
   dark: string;
   error: string;
-  errorLight: string;
 }
 
 const {

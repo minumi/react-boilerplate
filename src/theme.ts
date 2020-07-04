@@ -1,6 +1,5 @@
 const error = {
   error: '#c92a2a', // #e03131
-  errorLight: '#ff6b6b',
 };
 
 const light = {
