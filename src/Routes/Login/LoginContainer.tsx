@@ -5,10 +5,10 @@ import React, {
   useState,
 } from 'react';
 import { useMutation } from 'react-apollo';
-import { LOG_USER_IN } from '../../sharedQueries.local';
-import { LOGIN_USER } from './LoginQueries';
 import { toast } from 'react-toastify';
+import { LOG_USER_IN } from '../../sharedQueries.local';
 import LoginPresenter from './LoginPresenter';
+import { LOGIN_USER } from './LoginQueries';
 
 const LoginContainer = () => {
   const [form, setForm] = useState({

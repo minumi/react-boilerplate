@@ -7,17 +7,13 @@ import { ThemeProvider } from '../../typed-components';
 import AppPresenter from './AppPresenter';
 import { IS_LOGGED_IN } from './AppQueries.local';
 import GlobalStyle from '../../GlobalStyle';
+import { useTheme } from '../../Hooks/useTheme';
 
 const AppContainer: React.SFC<ChildProps<any>> = ({ data }) => {
-  let theme = light;
-  if (localStorage.getItem('theme')) {
-    theme = localStorage.getItem('theme') === 'dark' ? dark : light;
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    theme = dark;
-  }
+  const [theme] = useTheme();
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme === 'dark' ? dark : light}>
         <GlobalStyle />
         <AppPresenter isLoggedIn={data.auth.isLoggedIn} />
         <ToastContainer draggable={true} position={'top-center'} />
