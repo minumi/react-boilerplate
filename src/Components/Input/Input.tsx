@@ -1,7 +1,6 @@
-import React, { InputHTMLAttributes } from 'react';
 import styled from '../../typed-components';
 
-const Container = styled.input`
+const Input = styled.input`
   padding-top: 3px;
   padding-left: 5px;
   min-height: 40px;
@@ -22,9 +21,5 @@ const Container = styled.input`
     background-color: ${(props) => props.theme.primary3};
   }
 `;
-
-interface IProps extends InputHTMLAttributes<HTMLInputElement> {}
-
-const Input: React.SFC<IProps> = ({ ...props }) => <Container {...props} />;
 
 export default Input;
