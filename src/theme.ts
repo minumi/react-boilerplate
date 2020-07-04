@@ -1,3 +1,8 @@
+const error = {
+  error: '#c92a2a', // #e03131
+  error50: '#ff6b6b',
+};
+
 const light = {
   primary0: '#f8f9fa',
   primary1: '#f1f3f5',
@@ -9,6 +14,7 @@ const light = {
   primary7: '#495057',
   primary8: '#343a40',
   primary9: '#212529',
+  ...error,
 };
 
 const dark = {

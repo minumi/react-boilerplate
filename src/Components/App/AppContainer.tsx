@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, ChildProps } from 'react-apollo';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { light, dark } from '../../theme';
@@ -8,16 +8,7 @@ import AppPresenter from './AppPresenter';
 import { IS_LOGGED_IN } from './AppQueries.local';
 import GlobalStyle from '../../GlobalStyle';
 
-interface IProps {
-  data: {
-    auth: {
-      isLoggedIn: boolean;
-      __typename: string;
-    };
-  };
-}
-
-const AppContainer = ({ data }: any) => {
+const AppContainer: React.SFC<ChildProps<any>> = ({ data }) => {
   let theme = light;
   if (localStorage.getItem('theme')) {
     theme = localStorage.getItem('theme') === 'dark' ? dark : light;

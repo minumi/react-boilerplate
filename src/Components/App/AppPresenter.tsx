@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from '../../Routes/Login';
 import Home from '../../Routes/Home';
+import Signup from '../../Routes/Signup';
 
 interface IProps {
   isLoggedIn: boolean;
@@ -16,7 +17,9 @@ const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) => (
 
 const LoggedOutRoutes: React.SFC = () => (
   <Switch>
-    <Route path={'/'} exact={true} component={Login} />
+    <Redirect from={'/'} exact={true} to={'/login'} />
+    <Route path={'/login'} exact={true} component={Login} />
+    <Route path={'/signup'} exact={true} component={Signup} />
     <Redirect from={'*'} to={'/'} />
   </Switch>
 );

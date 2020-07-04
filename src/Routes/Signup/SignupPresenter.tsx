@@ -11,10 +11,14 @@ interface IProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   loading: boolean;
 }
-const LoginPresenter: React.SFC<IProps> = ({ onSubmit, onChange, loading }) => (
+const SignupPresenter: React.SFC<IProps> = ({
+  onSubmit,
+  onChange,
+  loading,
+}) => (
   <>
     <Helmet>
-      <title>Log In</title>
+      <title>Sign Up</title>
     </Helmet>
     <LayoutSpacer height="50px" />
     <LayoutCenter>
@@ -24,7 +28,7 @@ const LoginPresenter: React.SFC<IProps> = ({ onSubmit, onChange, loading }) => (
           <Input
             id="email"
             type="text"
-            autoComplete="username"
+            autoComplete="email"
             onChange={onChange}
           />
         </InputWrapper>
@@ -33,16 +37,34 @@ const LoginPresenter: React.SFC<IProps> = ({ onSubmit, onChange, loading }) => (
           <Input
             id="password"
             type="password"
-            autoComplete="current-password"
+            autoComplete="new-password"
+            onChange={onChange}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label htmlFor="passwordConfirm">Password Confirm</Label>
+          <Input
+            id="passwordConfirm"
+            type="password"
+            autoComplete="new-password"
+            onChange={onChange}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label htmlFor="fullName">Full Name</Label>
+          <Input
+            id="fullName"
+            type="name"
+            autoComplete="name"
             onChange={onChange}
           />
         </InputWrapper>
         <Button disabled={loading} fill={true} size={'big'}>
-          {loading ? 'Loading...' : 'Log in'}
+          {loading ? 'Loading...' : 'Sign Up'}
         </Button>
       </Form>
     </LayoutCenter>
   </>
 );
 
-export default LoginPresenter;
+export default SignupPresenter;
