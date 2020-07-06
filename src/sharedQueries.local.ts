@@ -11,3 +11,11 @@ export const LOG_USER_OUT = gql`
     logUserOut @client
   }
 `;
+
+export const GET_IS_LOGGED_IN = gql`
+  {
+    auth {
+      isLoggedIn @client
+    }
+  }
+`;

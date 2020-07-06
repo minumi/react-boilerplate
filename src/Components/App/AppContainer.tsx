@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { light, dark } from '../../theme';
 import { ThemeProvider } from '../../typed-components';
 import AppPresenter from './AppPresenter';
-import { IS_LOGGED_IN } from './AppQueries.local';
+import { GET_IS_LOGGED_IN } from '../../sharedQueries.local';
 import GlobalStyle from '../../GlobalStyle';
 import { useTheme } from '../../Hooks/useTheme';
 
@@ -22,4 +22,4 @@ const AppContainer: React.SFC<ChildProps<any>> = ({ data }) => {
   );
 };
 
-export default graphql(IS_LOGGED_IN)(AppContainer);
+export default graphql(GET_IS_LOGGED_IN)(AppContainer);
